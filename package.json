@@ -1,0 +1,17 @@
+{
+  "name": "youtube-playlist-downloader",
+  "version": "1.0.0",
+  "description": "Script to download a Youtube Playlist",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Marcos Checa",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^8.0.0",
+    "youtube-dl-exec": "^2.1.5"
+  }
+}
