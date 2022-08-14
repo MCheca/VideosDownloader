@@ -1,8 +1,10 @@
 const cluster = require('cluster');
 const os = require('os');
+const fs = require('fs');
 
 const inquirer = require('inquirer');
 
+const getDateString = require('./utils/getDateFormat');
 const { download } = require('./utils/downloadManager');
 
 const questions = [
@@ -35,6 +37,10 @@ const cpuCount = os.cpus().length;
 
 (async () => {
   if (cluster.isMaster) {
+    const downloadsFolder = `./downloads/${getDateString()}`;
+
+    fs.mkdirSync(downloadsFolder);
+
     const { inputType, url, outputType } = await inquirer.prompt(questions);
 
     if (inputType === 'playlist') {
@@ -49,12 +55,13 @@ const cpuCount = os.cpus().length;
           url,
           outputType,
           cpuCount,
+          downloadsFolder,
         });
 
         childProcess.disconnect();
       }
     } else {
-      await download(inputType, url, outputType, cpuCount);
+      await download(inputType, url, outputType, cpuCount, downloadsFolder);
     }
   }
 })();
