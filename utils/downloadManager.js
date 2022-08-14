@@ -1,10 +1,16 @@
 const youtubedl = require('youtube-dl-exec');
 const path = require('path');
 
-const downloadsFolder = path.join(__dirname, '../downloads');
-
-const download = async (inputType, url, outputType, cpuCount) => {
+const download = async (
+  inputType,
+  url,
+  outputType,
+  cpuCount,
+  downloadsFolder
+) => {
   try {
+    const downloadsFolderPath = path.join(__dirname, `../${downloadsFolder}`);
+
     let settings = {
       ...(outputType === 'video' ? { recodeVideo: 'mp4' } : {}),
       ...(outputType === 'audio'
@@ -43,7 +49,7 @@ const download = async (inputType, url, outputType, cpuCount) => {
       };
     }
 
-    await youtubedl(url, settings, { cwd: downloadsFolder });
+    await youtubedl(url, settings, { cwd: downloadsFolderPath });
   } catch (error) {
     console.log(error);
   }
