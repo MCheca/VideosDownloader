@@ -2,6 +2,8 @@
 
 Project based on [youtube-dl](https://github.com/ytdl-org/youtube-dl) that allows user download single videos or videos playlists in a simple way.
 
+You can see all the platforms where you can download videos in [this link](http://ytdl-org.github.io/youtube-dl/supportedsites.html), some of the available platforms are Youtube, Twitter, Instagram, TikTok, Vimeo, Udemy and hundreds of other popular platforms.
+
 ## Prerequistes
 
 > Python >= 3.7
