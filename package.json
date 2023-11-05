@@ -12,6 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "inquirer": "^8.0.0",
-    "youtube-dl-exec": "^2.1.5"
+    "youtube-dl-exec": "^2.4.15"
   }
 }

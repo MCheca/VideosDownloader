@@ -12,7 +12,9 @@ const download = async (
     const downloadsFolderPath = path.join(__dirname, `../${downloadsFolder}`);
 
     let settings = {
-      ...(outputType === 'video' ? { recodeVideo: 'mp4' } : {}),
+      ...(outputType === 'video'
+        ? { recodeVideo: 'mp4', formatSort: 'res:1080' }
+        : {}),
       ...(outputType === 'audio'
         ? {
             audioFormat: 'mp3',

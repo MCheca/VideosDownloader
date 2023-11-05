@@ -36,32 +36,30 @@ const questions = [
 const cpuCount = os.cpus().length;
 
 (async () => {
-  if (cluster.isMaster) {
-    const downloadsFolder = `./downloads/${getDateString()}`;
+  const downloadsFolder = `./downloads/${getDateString()}`;
 
-    fs.mkdirSync(downloadsFolder);
+  fs.mkdirSync(downloadsFolder);
 
-    const { inputType, url, outputType } = await inquirer.prompt(questions);
+  const { inputType, url, outputType } = await inquirer.prompt(questions);
 
-    if (inputType === 'playlist') {
-      cluster.settings = {
-        exec: './utils/multiThreadDownload.js',
-      };
+  if (inputType === 'playlist') {
+    cluster.settings = {
+      exec: './utils/multiThreadDownload.js',
+    };
 
-      for (let i = 1; i <= cpuCount; i++) {
-        const childProcess = cluster.fork({
-          processId: i,
-          inputType,
-          url,
-          outputType,
-          cpuCount,
-          downloadsFolder,
-        });
+    for (let i = 1; i <= cpuCount; i++) {
+      const childProcess = cluster.fork({
+        processId: i,
+        inputType,
+        url,
+        outputType,
+        cpuCount,
+        downloadsFolder,
+      });
 
-        childProcess.disconnect();
-      }
-    } else {
-      await download(inputType, url, outputType, cpuCount, downloadsFolder);
+      childProcess.disconnect();
     }
+  } else {
+    await download(inputType, url, outputType, cpuCount, downloadsFolder);
   }
 })();
