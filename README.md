@@ -8,7 +8,7 @@ You can see all the platforms where you can download videos in [this link](http:
 
 > Python >= 3.7
 
-> NodeJs >= 14
+> NodeJs >= 18
 
 > Download [ffmpeg](https://ffmpeg.org/download.html) and move the ffmpeg, ffplay and ffprobe files inside the "ffmpeg" folder of this repository.
 
